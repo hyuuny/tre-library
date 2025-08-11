@@ -27,7 +27,7 @@ class BookServiceTest extends BaseTest {
                 "Practical MongoDB",
                 "Architecting, Developing, and Administering MongoDB",
                 "Sharon Tracey",
-                "Apress",
+                "2016-03-01",
                 "9781484206485",
                 "https://itbook.store/img/books/9781484206485.png"
         );
@@ -39,7 +39,7 @@ class BookServiceTest extends BaseTest {
         assertThat(response.getTitle()).isEqualTo(savedBook.getTitle());
         assertThat(response.getSubTitle()).isEqualTo(savedBook.getSubTitle());
         assertThat(response.getAuthor()).isEqualTo(savedBook.getAuthor());
-        assertThat(response.getPublisher()).isEqualTo(savedBook.getPublisher());
+        assertThat(response.getPublished()).isEqualTo(savedBook.getPublished());
         assertThat(response.getIsbn()).isEqualTo(savedBook.getIsbn());
         assertThat(response.getImageUrl()).isEqualTo(savedBook.getImageUrl());
         assertThat(response.getCreatedAt()).isEqualTo(savedBook.getCreatedAt());

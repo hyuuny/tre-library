@@ -26,7 +26,7 @@ public class Book extends BaseEntity {
     private String author;
 
     @Column(nullable = false)
-    private String publisher;
+    private String published;
 
     @Column(nullable = false)
     private String isbn;

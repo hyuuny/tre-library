@@ -24,7 +24,7 @@ public class BookDto {
 
         private String author;
 
-        private String publisher;
+        private String published;
 
         private String isbn;
 
@@ -39,7 +39,7 @@ public class BookDto {
             this.title = entity.getTitle();
             this.subTitle = entity.getSubTitle();
             this.author = entity.getAuthor();
-            this.publisher = entity.getPublisher();
+            this.published = entity.getPublished();
             this.isbn = entity.getIsbn();
             this.imageUrl = entity.getImageUrl();
             this.createdAt = entity.getCreatedAt();
