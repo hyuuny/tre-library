@@ -1,6 +1,9 @@
 package com.hyuuny.trelibrary.books.domain;
 
-import jakarta.persistence.*;
+import com.hyuuny.trelibrary.core.domain.BaseEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,12 +14,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @Table(name = "books")
-public class Book {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false)
-    private Long id;
+public class Book extends BaseEntity {
 
     @Column(nullable = false)
     private String title;
