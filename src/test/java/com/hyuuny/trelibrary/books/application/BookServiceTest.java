@@ -3,6 +3,7 @@ package com.hyuuny.trelibrary.books.application;
 import com.hyuuny.trelibrary.books.domain.Book;
 import com.hyuuny.trelibrary.books.domain.BookRepository;
 import com.hyuuny.trelibrary.common.BaseTest;
+import com.hyuuny.trelibrary.core.response.SimplePage;
 import com.hyuuny.trelibrary.core.utils.SearchStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -66,16 +67,16 @@ class BookServiceTest extends BaseTest {
     @Test
     void searchBooksByTitle() {
         String keyword = "React";
-        Page<BookDto.BookResponse> responses = bookService.searchByKeyword(keyword, PageRequest.of(0, 20));
-        assertThat(responses.getTotalElements()).isEqualTo(7);
+        SimplePage<BookDto.BookResponse> responses = bookService.searchByKeyword(keyword, PageRequest.of(0, 20));
+        assertThat(responses.totalElements()).isEqualTo(7);
     }
 
     @DisplayName("title에 keyword가 포함된 도서가 없으면 빈 목록이 조회된다")
     @Test
     void searchBooksByTitle_zero() {
         String keyword = "abc";
-        Page<BookDto.BookResponse> responses = bookService.searchByKeyword(keyword, PageRequest.of(0, 20));
-        assertThat(responses.getTotalElements()).isEqualTo(0);
+        SimplePage<BookDto.BookResponse> responses = bookService.searchByKeyword(keyword, PageRequest.of(0, 20));
+        assertThat(responses.totalElements()).isEqualTo(0);
     }
 
     @DisplayName("title 또는 subTitle에 q가 포함된 도서 목록을 조회할 수 있다")
