@@ -2,10 +2,10 @@ package com.hyuuny.trelibrary.books.application;
 
 import com.hyuuny.trelibrary.books.domain.Book;
 import com.hyuuny.trelibrary.books.domain.BookRepository;
+import com.hyuuny.trelibrary.core.response.SimplePage;
 import com.hyuuny.trelibrary.core.utils.SearchStrategy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -26,7 +26,7 @@ public class BookReader {
         );
     }
 
-    public PageImpl<BookDto.BookResponse> searchByKeyword(String keyword, Pageable pageable) {
+    public SimplePage<BookDto.BookResponse> searchByKeyword(String keyword, Pageable pageable) {
         Page<Book> page = StringUtils.hasText(keyword) ?
                 bookRepository.searchByKeyword(keyword, pageable) :
                 bookRepository.searchByKeyword("", pageable);
@@ -35,7 +35,7 @@ public class BookReader {
                 .map(BookDto.BookResponse::new)
                 .toList();
 
-        return new PageImpl<>(books, pageable, page.getTotalElements());
+        return new SimplePage<>(books, page);
     }
 
     public BookDto.SearchResultDto searchByComplexQuery(String q, Pageable pageable) {
