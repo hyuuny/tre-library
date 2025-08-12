@@ -1,8 +1,8 @@
 package com.hyuuny.trelibrary.books.application;
 
 import com.hyuuny.trelibrary.books.domain.Book;
+import com.hyuuny.trelibrary.core.response.SimplePage;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +19,7 @@ public class BookService {
         return new BookDto.DetailResponse(existingBook);
     }
 
-    public Page<BookDto.BookResponse> searchByKeyword(String keyword, Pageable pageable) {
+    public SimplePage<BookDto.BookResponse> searchByKeyword(String keyword, Pageable pageable) {
         return reader.searchByKeyword(keyword, pageable);
     }
 
