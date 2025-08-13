@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 @Component
-public class QueryVerifier {
+public class BookQueryValidator {
 
     public void validateQuery(String q) {
         if (!StringUtils.hasText(q)) throw new IllegalArgumentException("검색어는 필수값 입니다.");
