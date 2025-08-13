@@ -18,7 +18,7 @@ import java.util.NoSuchElementException;
 public class BookReader {
 
     private final BookRepository bookRepository;
-    private final QueryVerifier queryVerifier;
+    private final BookQueryValidator validator;
 
     public Book readBook(Long id) {
         return bookRepository.findById(id).orElseThrow(
@@ -39,7 +39,7 @@ public class BookReader {
     }
 
     public BookDto.SearchResultDto searchByComplexQuery(String q, Pageable pageable) {
-        queryVerifier.validateQuery(q);
+        validator.validateQuery(q);
 
         long start = System.currentTimeMillis();
         SearchStrategy strategy = SearchStrategy.toStrategy(q);
