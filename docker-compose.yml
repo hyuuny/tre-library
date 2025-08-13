@@ -1,17 +1,32 @@
-version: "3"
+version: "3.8"
 
 services:
+  app:
+    build: .
+    container_name: tre_library_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/tre_library?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
+      SPRING_DATASOURCE_USERNAME: treuser
+      SPRING_DATASOURCE_PASSWORD: password
+    restart: on-failure
+
   mysql:
     image: mysql:8.0
     container_name: mysql_tre_library_db
-    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: "1234"
-      MYSQL_ROOT_HOST: "%"
-      MYSQL_DATABASE: "tre_library"
-      MYSQL_USER: "treuser"
-      MYSQL_PASSWORD: "password"
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: tre_library
+      MYSQL_USER: treuser
+      MYSQL_PASSWORD: password
     ports:
       - "3306:3306"
     volumes:
-      - ~/docker-volumes/tre_library/mysql/data:/data
+      - mysql_data:/var/lib/mysql
+    restart: always
+
+volumes:
+  mysql_data:
